@@ -156,10 +156,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2b4f72625e54e7dbf75317dcaf89d89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mechanismContainers:
+  _mechanisms:
   - {fileID: 619213716}
   - {fileID: 820495204}
-  Animator: {fileID: 562017211}
+  _animator: {fileID: 562017211}
 --- !u!65 &562017207
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -287,7 +287,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13c697417f64a14a3b3bd259d4af897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyCode: 282
+  _fireSystem: {fileID: 1004988367}
+  _switchKeyCode: 113
 --- !u!65 &619213717
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5306,7 +5307,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f13c697417f64a14a3b3bd259d4af897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyCode: 283
+  _fireSystem: {fileID: 710101428}
+  _switchKeyCode: 119
 --- !u!65 &820495205
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10197,7 +10199,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1342230270}
-  - component: {fileID: 1342230271}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -10220,20 +10221,6 @@ Transform:
   m_Father: {fileID: 820495208}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1342230271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1342230269}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42bd0ed2b05415e974f78e34e7cbc52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mechanism: {fileID: 820495204}
-  ParticleSystem: {fileID: 710101428}
 --- !u!1 &1687258581
 GameObject:
   m_ObjectHideFlags: 0
@@ -10324,8 +10311,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687258581}
-  m_LocalRotation: {x: 0.025557358, y: -0.96914685, z: 0.21693426, w: 0.114196576}
-  m_LocalPosition: {x: 0.7698178, y: 2.1529665, z: 2.7646875}
+  m_LocalRotation: {x: 0.06007962, y: -0.9246553, z: 0.33827108, w: 0.16424266}
+  m_LocalPosition: {x: 2.941052, y: 4.3382416, z: 5.4396734}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10372,7 +10359,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2111913884}
-  - component: {fileID: 2111913885}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -10395,20 +10381,6 @@ Transform:
   m_Father: {fileID: 619213720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2111913885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111913883}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a42bd0ed2b05415e974f78e34e7cbc52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Mechanism: {fileID: 619213716}
-  ParticleSystem: {fileID: 1004988367}
 --- !u!1001 &2136604818
 PrefabInstance:
   m_ObjectHideFlags: 0

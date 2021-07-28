@@ -44,6 +44,8 @@ namespace Modules.Ticks.Runtime
         {
             var removeAt = Array.IndexOf(_ticks, tick);
 
+            if (removeAt == -1) return;
+            
             _ticks[removeAt] = default;
 
             for (var i = removeAt; i< _length - 1; i++)
