@@ -7,12 +7,12 @@ public class CameraFollow : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Vector3 cameraPoint;
     [SerializeField] private float offset;
-    public PropertyStateCamera follow;
+    private PropertyStateCamera _follow;
     
     
     private void Start()
     {
-        follow = new PropertyStateCamera(transform, player, cameraPoint, offset);
-        TickManager.AddTick(this, follow);
+        _follow = new PropertyStateCamera(transform, player, cameraPoint, offset);
+        TickManager.AddTick(this, _follow);
     }
 }
