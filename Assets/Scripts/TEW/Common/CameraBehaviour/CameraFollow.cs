@@ -1,18 +1,21 @@
 using Modules.Ticks.Runtime;
 using UnityEngine;
-using TEW.Common;
 
-public class CameraFollow : MonoBehaviour
+namespace TEW.Common.CameraBehaviour
 {
-    [SerializeField] private Transform player;
-    [SerializeField] private Vector3 cameraPoint;
-    [SerializeField] private float offset;
-    private PropertyStateCamera _follow;
-    
-    
-    private void Start()
+    public class CameraFollow : MonoBehaviour
     {
-        _follow = new PropertyStateCamera(transform, player, cameraPoint, offset);
-        TickManager.AddTick(this, _follow);
+        [SerializeField] private Transform player;
+        [SerializeField] private Vector3 cameraPoint;
+        [SerializeField] private float offset;
+        [SerializeField] private Vector2 cameraLimY;
+        private PropertyStateCamera _follow;
+    
+    
+        private void Start()
+        {
+            _follow = new PropertyStateCamera(transform, player, cameraPoint, offset, cameraLimY);
+            TickManager.AddTick(this, _follow);
+        }
     }
 }

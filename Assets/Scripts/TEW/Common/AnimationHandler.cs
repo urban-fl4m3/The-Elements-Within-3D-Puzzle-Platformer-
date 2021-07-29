@@ -6,40 +6,41 @@ namespace TEW.Common
 {
     public class AnimationHandler: ITickUpdate
     {
+        public bool Enabled { get; set; }
+        public readonly DynamicDynamicProperty<bool> IsRunning = new DynamicDynamicProperty<bool>(false);
+        private static readonly int Running = Animator.StringToHash("IsRunning");
+        private static readonly int Pause = Animator.StringToHash("Pause");
         private readonly Animator _animator;
-        public DynamicDynamicProperty<bool> isRunning = new DynamicDynamicProperty<bool>(false);
-        public DynamicDynamicProperty<bool> isAttack = new DynamicDynamicProperty<bool>(false);
         private float _timer = 10;
+
         public AnimationHandler(Animator animator)
         {
             _animator = animator;
-            isRunning.Changed += Run;
+            IsRunning.Changed += Run;
         }
-
-     
-        public bool Enabled { get; set; }
         public void Tick()
         {
-            if (!isRunning.Value)
+            if (!IsRunning.Value)
                 _timer -= Time.deltaTime;
             
             IdlePause();
         }
-        
         private void Run(object sender, bool e)
         {
-            _animator.SetBool("IsRunning", e);
-            _timer = 10;
+            _animator.SetBool(Running, e);
+            ResetTimer();
         }
-
         private void IdlePause()
         {
             
             if(_timer>0)
                 return;
-            _animator.SetTrigger("Pause");
+            _animator.SetTrigger(Pause);
+            ResetTimer();
+        }
+        private void ResetTimer()
+        {
             _timer = 10;
         }
-
     }
 }

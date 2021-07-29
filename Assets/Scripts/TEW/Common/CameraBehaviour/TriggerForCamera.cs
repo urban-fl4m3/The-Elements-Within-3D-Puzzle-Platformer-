@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace TEW.Common.Camera
+namespace TEW.Common.CameraBehaviour
 {
     public class TriggerForCamera: MonoBehaviour
     {
@@ -9,10 +8,9 @@ namespace TEW.Common.Camera
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other);
             if (other.CompareTag("Player"))
             {
-                cameraPoint.SetCameraBehaivor();
+                cameraPoint.SetCameraBehaviour();
             }
         }
     }

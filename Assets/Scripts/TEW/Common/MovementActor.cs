@@ -1,5 +1,6 @@
 ﻿using Modules.Common.Runtime;
 using Modules.Ticks.Runtime;
+using TEW.Common.CameraBehaviour;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -7,22 +8,23 @@ namespace TEW.Common
 {
     public class MovementActor: ITickFixedUpdate
     {
-        private float _vertical;
-        private float _horizontal;
+        public bool Enabled { get; set; }
         private readonly CharacterController _actor;
         private readonly CameraFollow _cameraFollow;
         private readonly DynamicDynamicProperty<bool> _isRunning;
         private readonly float _speed;
+        private readonly float _rotationSpeed;
+        private float _vertical;
+        private float _horizontal;
 
-        public MovementActor(CharacterController actor, float speed, CameraFollow cameraFollow, DynamicDynamicProperty<bool> isRunning)
+        public MovementActor(CharacterController actor, float speed, float rotationSpeed, CameraFollow cameraFollow, DynamicDynamicProperty<bool> isRunning)
         {
             _actor = actor;
             _speed = speed;
             _cameraFollow = cameraFollow;
             _isRunning = isRunning;
+            _rotationSpeed = rotationSpeed;
         }
-
-        public bool Enabled { get; set; }
         
         public void Tick()
         {
@@ -50,11 +52,9 @@ namespace TEW.Common
             targetRotate.y = 0;
 
             var lookDirection = Quaternion.LookRotation(targetRotate);
-
-            float rotationSpeed = 180 * Time.deltaTime;
-
+            
             _actor.transform.rotation =
-                Quaternion.RotateTowards(_actor.transform.rotation, lookDirection, rotationSpeed);
+                Quaternion.RotateTowards(_actor.transform.rotation, lookDirection, _rotationSpeed * Time.deltaTime);
         }
     }
     

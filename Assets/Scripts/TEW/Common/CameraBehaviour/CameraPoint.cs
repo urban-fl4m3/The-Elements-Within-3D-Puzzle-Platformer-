@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace TEW.Common.Camera
+namespace TEW.Common.CameraBehaviour
 {
     public class CameraPoint: MonoBehaviour
     {
@@ -9,7 +9,7 @@ namespace TEW.Common.Camera
         [SerializeField] private Vector3 path;
         public FixedCamera fixedCamera;
 
-        public void SetCameraBehaivor()
+        public void SetCameraBehaviour()
         {
             fixedCamera.SetBehaviour(lookAtPlayer,isGetPath,transform.position,path, transform.eulerAngles);
         }
