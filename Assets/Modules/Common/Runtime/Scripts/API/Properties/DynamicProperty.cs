@@ -3,18 +3,18 @@
 // ReSharper disable once CheckNamespace
 namespace Modules.Common.Runtime
 {
-    public class DynamicDynamicProperty<T> : IDynamicProperty<T>, IReadonlyDynamicProperty<T>
+    public class DynamicProperty<T> : IDynamicProperty<T>, IReadonlyDynamicProperty<T>
     {
         public event EventHandler<T> Changed;
         
         private T _value;
         
-        public DynamicDynamicProperty(T value)
+        public DynamicProperty(T value)
         {
             _value = value;
         }
 
-        public DynamicDynamicProperty()
+        public DynamicProperty()
         {
             _value = default;
         }

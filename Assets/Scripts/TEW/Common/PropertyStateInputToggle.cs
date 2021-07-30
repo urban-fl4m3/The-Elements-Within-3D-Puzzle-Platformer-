@@ -8,10 +8,10 @@ namespace TEW.Common
     {
         public bool Enabled { get; set; }
         
-        private readonly DynamicDynamicProperty<bool> _changeableProperty;
+        private readonly DynamicProperty<bool> _changeableProperty;
         private readonly KeyCode _inputKeyCode;
 
-        public PropertyStateInputToggle(DynamicDynamicProperty<bool> changeableProperty, KeyCode keyCode)
+        public PropertyStateInputToggle(DynamicProperty<bool> changeableProperty, KeyCode keyCode)
         {
             _changeableProperty = changeableProperty;
             _inputKeyCode = keyCode;

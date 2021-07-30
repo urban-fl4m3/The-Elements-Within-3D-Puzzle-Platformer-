@@ -11,7 +11,7 @@ namespace TEW.Common
         public override IReadonlyDynamicProperty<bool> IsEnabled => _isEnabled;
         protected override IEnumerable<IMechanismComponent> MechanismComponents => _components;
 
-        private readonly DynamicDynamicProperty<bool> _isEnabled = new DynamicDynamicProperty<bool>(false);
+        private readonly DynamicProperty<bool> _isEnabled = new DynamicProperty<bool>(false);
         private readonly List<IMechanismComponent> _components = new List<IMechanismComponent>();
         
         private ITickUpdate _inputController;
