@@ -10,7 +10,8 @@ namespace TEW.Common.Rendering.CameraBehaviours.ThirdPersonFollower
         [SerializeField] private Vector3 _offset;
         [SerializeField] private Vector2 _cameraLimY;
         [SerializeField] private float _mouseSpeed;
-        
+
+        private GameObject _playerRotation; 
         private ThirdPersonCameraBehaviour _behaviour;
         
         private void Awake()
@@ -21,7 +22,8 @@ namespace TEW.Common.Rendering.CameraBehaviours.ThirdPersonFollower
                 _cameraLimY.y,
                 _mouseSpeed
             );
-
+            _playerRotation = new GameObject();
+            _playerRotation.transform.SetParent(transform);
             _behaviour = new ThirdPersonCameraBehaviour(transform, _player, stateCameraContext);
         }
 
@@ -37,7 +39,7 @@ namespace TEW.Common.Rendering.CameraBehaviours.ThirdPersonFollower
 
         public override IPlayerMovementBehaviour GetMovementBehaviour()
         {
-            return new ThirdPersonMovementBehaviour(transform);
+            return new ThirdPersonMovementBehaviour(transform, _playerRotation.transform);
         }
     }
 }

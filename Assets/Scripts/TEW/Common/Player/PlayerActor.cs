@@ -39,7 +39,6 @@ namespace TEW.Common.Player
         private void Start()
         {
             _animationHandler = new AnimationHandler(_animator, _isRunning);
-          
             TickManager.AddTick(this,_animationHandler);
         }
 

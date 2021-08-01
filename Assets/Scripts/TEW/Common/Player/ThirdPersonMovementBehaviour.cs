@@ -1,5 +1,6 @@
 ﻿using Modules.Common.Runtime;
 using TEW.Common.Player.Models;
+using Unity.Mathematics;
 using UnityEngine;
 
 namespace TEW.Common.Player
@@ -9,6 +10,7 @@ namespace TEW.Common.Player
         public bool Enabled { get; set; }
 
         private readonly Transform _camera;
+        private Transform _playerRotation;
 
         private CharacterController _controller;
         private IDynamicProperty<bool> _isRunning;
@@ -17,9 +19,10 @@ namespace TEW.Common.Player
         private float _vertical;
         private float _horizontal;
 
-        public ThirdPersonMovementBehaviour(Transform camera)
+        public ThirdPersonMovementBehaviour(Transform camera, Transform playerRotation)
         {
             _camera = camera;
+            _playerRotation = playerRotation;
         }
 
         public void ApplyContext(PlayerMovementContext context)
@@ -47,18 +50,24 @@ namespace TEW.Common.Player
             _horizontal = Input.GetAxis("Horizontal");
             _vertical = Input.GetAxis("Vertical");
 
-            var direction = _controller.transform.TransformDirection(_horizontal, 0, _vertical);
-            direction *= Time.deltaTime * _movementSpeed;
+            var transform = _controller.transform;
+            var direction = (transform).TransformDirection(_horizontal, 0, _vertical);
+            var playerSpeed = direction.magnitude * Time.deltaTime * _movementSpeed;
 
-            _controller.Move(direction);
+            _controller.Move(transform.forward * playerSpeed + Vector3.down * 9.81f);
         }
 
         private void Rotate()
         {
             if (!_isRunning.Value)
                 return;
-
-            var targetRotate = _camera.forward;
+            
+            
+            var movementDirection = new Vector3(_horizontal, 0, _vertical);
+            _playerRotation.localRotation = Quaternion.LookRotation(movementDirection);
+            
+            
+            var targetRotate = _playerRotation.forward;
             targetRotate.y = 0;
 
             var lookDirection = Quaternion.LookRotation(targetRotate);
