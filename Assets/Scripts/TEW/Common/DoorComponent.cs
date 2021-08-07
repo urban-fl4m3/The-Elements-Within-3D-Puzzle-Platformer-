@@ -8,6 +8,7 @@ namespace TEW.Common
     {
         [SerializeField] private List<Mechanism> mechanisms;
         [SerializeField] private Animator animator;
+        
         private static readonly int IsOpened = Animator.StringToHash("IsOpened");
 
         private void OnEnable()
@@ -17,6 +18,7 @@ namespace TEW.Common
                 mechanism.IsEnabled.Changed += HandleMechanismStateChanged;
             }
         }
+        
         private void OnDisable()
         {
             foreach (var mechanism in mechanisms)
@@ -24,8 +26,10 @@ namespace TEW.Common
                 mechanism.IsEnabled.Changed -= HandleMechanismStateChanged;
             }
         }
+        
         private void HandleMechanismStateChanged(object sender, bool e)
         {
+            Debug.Log("A");
             var readyToOpen = mechanisms
                 .Aggregate(true, (current, container) => current && container.IsEnabled.Value);
 

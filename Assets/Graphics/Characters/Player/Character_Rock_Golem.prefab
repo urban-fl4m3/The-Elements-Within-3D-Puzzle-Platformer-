@@ -1081,10 +1081,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 705868476}
-  thirdPersonCamera: {fileID: 0}
-  animator: {fileID: 5293065765191054140}
-  runSpeed: 1
-  rotationSpeed: 1
+  _animator: {fileID: 5293065765191054140}
+  _movementSpeed: 1
+  _rotationSpeed: 180
+  _interactionMask:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!1 &5293065765181596182
 GameObject:
   m_ObjectHideFlags: 0

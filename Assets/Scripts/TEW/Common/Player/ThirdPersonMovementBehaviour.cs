@@ -51,7 +51,7 @@ namespace TEW.Common.Player
             _vertical = Input.GetAxis("Vertical");
 
             var transform = _controller.transform;
-            var direction = (transform).TransformDirection(_horizontal, 0, _vertical);
+            var direction = transform.TransformDirection(_horizontal, 0, _vertical);
             var playerSpeed = direction.magnitude * Time.deltaTime * _movementSpeed;
 
             _controller.Move(transform.forward * playerSpeed + Vector3.down * 9.81f);
@@ -61,12 +61,14 @@ namespace TEW.Common.Player
         {
             if (!_isRunning.Value)
                 return;
-            
-            
+
             var movementDirection = new Vector3(_horizontal, 0, _vertical);
-            _playerRotation.localRotation = Quaternion.LookRotation(movementDirection);
             
-            
+            if (movementDirection.magnitude != 0)
+            { 
+                _playerRotation.localRotation = Quaternion.LookRotation(movementDirection);
+            }
+
             var targetRotate = _playerRotation.forward;
             targetRotate.y = 0;
 

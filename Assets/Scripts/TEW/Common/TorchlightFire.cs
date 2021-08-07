@@ -1,5 +1,6 @@
 ﻿using Modules.Common.Runtime;
 using TEW.Common.Components;
+using TEW.Common.World.Interactive;
 using UnityEngine;
 
 namespace TEW.Common

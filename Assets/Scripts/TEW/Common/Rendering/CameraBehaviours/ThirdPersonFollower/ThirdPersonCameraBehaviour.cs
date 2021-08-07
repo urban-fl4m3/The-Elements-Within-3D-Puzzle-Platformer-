@@ -51,8 +51,14 @@ namespace TEW.Common.Rendering.CameraBehaviours.ThirdPersonFollower
 
         private GameObject CreateCameraHolder()
         {
-            var holder = new GameObject();
-            holder.transform.position = _offset;
+            var holder = new GameObject
+            {
+                transform =
+                {
+                    position = _offset
+                }
+            };
+            
             _camera.SetParent(holder.transform);
             _camera.transform.localPosition = -Vector3.forward * 2;
             
