@@ -1,8 +1,9 @@
-﻿using UnityEngine;
+﻿using TEW.Common.Player;
+using UnityEngine;
 
 namespace TEW.Common.Rendering.CameraBehaviours.PathFollower
 {
-    public class FixedCamera : MonoBehaviour
+    public class FixedCamera : CameraActor
     {
         [SerializeField] private Transform _player;
 
@@ -58,6 +59,21 @@ namespace TEW.Common.Rendering.CameraBehaviours.PathFollower
             _startPosition = Vector3.zero;
             _isLookAtPlayer = false;
             _isFlyCamera = false;
+        }
+
+        protected override void ActivateCallback()
+        {
+            
+        }
+
+        protected override void DeactivateCallback()
+        {
+            
+        }
+
+        public override IPlayerMovementBehaviour GetMovementBehaviour()
+        {
+            return null;
         }
     }
 }

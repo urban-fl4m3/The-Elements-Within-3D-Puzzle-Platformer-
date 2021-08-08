@@ -29,7 +29,6 @@ namespace TEW.Common
         
         private void HandleMechanismStateChanged(object sender, bool e)
         {
-            Debug.Log("A");
             var readyToOpen = mechanisms
                 .Aggregate(true, (current, container) => current && container.IsEnabled.Value);
 
