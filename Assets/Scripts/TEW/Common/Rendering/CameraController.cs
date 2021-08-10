@@ -2,6 +2,7 @@
 using System.Linq;
 using TEW.Common.Rendering.Helpers;
 using TEW.Common.Rendering.Models;
+using UnityEngine;
 
 namespace TEW.Common.Rendering
 {
@@ -24,7 +25,7 @@ namespace TEW.Common.Rendering
             {
                 return;
             }
-            
+
             CurrentGameCamera?.Deactivate();
 
             if (_cameras.TryGetValue(behaviour, out var camera))

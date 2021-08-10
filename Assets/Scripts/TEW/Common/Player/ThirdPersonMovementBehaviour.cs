@@ -64,10 +64,7 @@ namespace TEW.Common.Player
 
             var movementDirection = new Vector3(_horizontal, 0, _vertical);
             
-            if (movementDirection.magnitude != 0)
-            { 
-                _playerRotation.localRotation = Quaternion.LookRotation(movementDirection);
-            }
+            _playerRotation.localRotation = Quaternion.LookRotation(movementDirection);
 
             var targetRotate = _playerRotation.forward;
             targetRotate.y = 0;

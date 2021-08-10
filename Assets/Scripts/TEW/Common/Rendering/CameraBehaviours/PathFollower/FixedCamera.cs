@@ -1,79 +1,28 @@
-﻿using TEW.Common.Player;
+﻿using Cinemachine;
+using TEW.Common.Player;
+using TEW.Common.Rendering;
 using UnityEngine;
 
-namespace TEW.Common.Rendering.CameraBehaviours.PathFollower
+namespace System
 {
-    public class FixedCamera : CameraActor
+    public class FixedCamera: CameraActor
     {
-        [SerializeField] private Transform _player;
-
-        private Vector3 _cameraRotation;
-        private Vector3 _startPosition;
-        private bool _isLookAtPlayer;
-        private bool _isFlyCamera;
-        private Camera _camera;
-
-        private void Awake()
-        {
-            _camera = GetComponent<Camera>();
-        }
-
-        private void Update()
-        {
-            RotateCamera();
-            MoveCamera();
-        }
-
-        private void MoveCamera()
-        {
-            if (!_isFlyCamera)
-            {
-                _camera.transform.position = _startPosition;
-            }
-        }
-
-        private void RotateCamera()
-        {
-            if (!_isLookAtPlayer)
-            {
-                _camera.transform.eulerAngles = _cameraRotation;
-            }
-            else
-            {
-                _camera.transform.LookAt(_player);
-            }
-        }
-
-        public void SetBehaviour(bool isLookAt, bool isFly, Vector3 startPos, Vector3 endPos, Vector3 rotation)
-        {
-            CleanState();
-            _isLookAtPlayer = isLookAt;
-            _isFlyCamera = isFly;
-            _startPosition = startPos;
-            _cameraRotation = rotation;
-        }
-
-        private void CleanState()
-        {
-            _cameraRotation = Vector3.zero;
-            _startPosition = Vector3.zero;
-            _isLookAtPlayer = false;
-            _isFlyCamera = false;
-        }
-
+        [SerializeField] private Transform _lookAtTransform;
+        [SerializeField] private CinemachineVirtualCameraBase _cinemachine;
+        [SerializeField] private Transform _playerFixedRotation;
         protected override void ActivateCallback()
         {
-            
+            _cinemachine.LookAt = _lookAtTransform;
         }
 
         protected override void DeactivateCallback()
         {
-            
+            Debug.Log("CameraDeactivate");
         }
 
         public override IPlayerMovementBehaviour GetMovementBehaviour()
         {
-            return null;
+            return new ThirdPersonMovementBehaviour(transform, _playerFixedRotation);
         }
     }
 }

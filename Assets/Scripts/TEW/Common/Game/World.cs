@@ -16,7 +16,7 @@ namespace TEW.Common.Game
         private void Start()
         {
             _cameraController = new CameraController(_cameraModels);
-            ChangeActiveCamera(CameraBehaviour.ThirdPerson);
+            ChangeActiveCamera(CameraBehaviour.FixedTopDown);
         }
 
         private void ChangeActiveCamera(CameraBehaviour behaviour)
