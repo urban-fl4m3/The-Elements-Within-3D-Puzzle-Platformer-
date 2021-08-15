@@ -31,15 +31,7 @@ namespace TEW.Common.Player.Interactions
             var interactiveObjectFound = Physics.Raycast(_origin.position, _origin.forward, out _interactiveHit,
                 _radius, _interactiveLayer);
 
-            if (interactiveObjectFound)
-            {
-                var interactable = _interactiveHit.collider.gameObject.GetComponent<IInteractable>();
-
-                if (interactable != null)
-                {
-                    _interactiveObject.Value = interactable;
-                }
-            }
+            _interactiveObject.Value = interactiveObjectFound ? _interactiveHit.collider.gameObject.GetComponent<IInteractable>() : null;
         }
 
         public void Dispose()

@@ -12,7 +12,7 @@ namespace TEW.Common.Rendering.CameraBehaviours.ThirdPersonFollower
         [SerializeField] private Camera _camera;
         protected override void ActivateCallback()
         {
-            _camera.enabled = false;
+            _camera.enabled = true;
             _cinemachine.Follow = _follow;
             _cinemachine.LookAt = _lookAtTransform;
         }

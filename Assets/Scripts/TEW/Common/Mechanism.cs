@@ -21,6 +21,7 @@ namespace TEW.Common
             CreateCallback();
         }
 
+
         private void OnDestroy()
         {
             DestroyCallback();

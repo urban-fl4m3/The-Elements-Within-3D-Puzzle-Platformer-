@@ -1113,7 +1113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _characterController: {fileID: 705868476}
   _animator: {fileID: 5293065765191054140}
-  _movementSpeed: 1
+  _movementSpeed: 3
   _rotationSpeed: 600
   _interactionMask:
     serializedVersion: 2

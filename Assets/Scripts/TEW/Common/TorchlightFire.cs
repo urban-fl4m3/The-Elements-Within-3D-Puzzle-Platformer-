@@ -1,6 +1,6 @@
-﻿using Modules.Common.Runtime;
+﻿using System.Threading.Tasks;
+using Modules.Common.Runtime;
 using TEW.Common.Components;
-using TEW.Common.World.Interactive;
 using UnityEngine;
 
 namespace TEW.Common
@@ -9,16 +9,19 @@ namespace TEW.Common
     {
         private readonly IReadonlyDynamicProperty<bool> _state;
         private readonly ParticleSystem _fire;
+        private readonly float _timeToWait;
+        private readonly GameObject _light;
 
-        public TorchlightFire(IReadonlyDynamicProperty<bool> state, ParticleSystem fire)
+        public TorchlightFire(IReadonlyDynamicProperty<bool> state, ParticleSystem fire, GameObject light, float timeToWait)
         {
             _state = state;
             _fire = fire;
-        
-            TurnOn(_state.Value);
-            
-        }
+            _light = light;
+            _timeToWait = timeToWait;
 
+            WaitSomeTimeToOn(_state.Value);
+        }
+        
         public void Activate()
         {
             _state.Changed += HandleMechanismStateChanged;
@@ -31,12 +34,22 @@ namespace TEW.Common
 
         private void HandleMechanismStateChanged(object sender, bool e)
         {
-            TurnOn(e);
+            WaitSomeTimeToOn(e);
         }
 
-        private void TurnOn(bool enableParticle)
+        private async void WaitSomeTimeToOn(bool toDo)
         {
-            _fire.gameObject.SetActive(enableParticle);
+            var a = (int) (_timeToWait * 1000f);
+            await Task.Delay(a);
+            
+            _light.SetActive(toDo);
+            _state.Value = toDo;
+            
+            if (toDo)
+                _fire.Play();
+            else
+                _fire.Stop();
+
         }
     }
 }
