@@ -23,8 +23,6 @@ namespace TEW.Common
         {
             _components.Add(new TorchlightFire(_isEnabled, _fireSystem, _light, _timerToOn));
         }
-
-        
         
         protected override void DestroyCallback()
         {
@@ -34,7 +32,6 @@ namespace TEW.Common
         protected override void ActivateCallback()
         {
         }
-
 
         protected override void DeactivateCallback()
         {

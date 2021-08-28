@@ -49,7 +49,6 @@ namespace TEW.Common
                 _fire.Play();
             else
                 _fire.Stop();
-
         }
     }
 }
