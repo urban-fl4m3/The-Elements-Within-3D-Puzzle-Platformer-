@@ -1,3 +1,4 @@
+using System;
 using Modules.Common.Runtime;
 using Modules.Ticks.Runtime;
 using TEW.Common.Player.Interactions;
@@ -68,6 +69,10 @@ namespace TEW.Common.Player
         private void OnDestroy()
         {
             _interactionInputBehaviour.Dispose();
+            TickManager.RemoveTick(_animationHandler);
+            TickManager.RemoveTick(_interactiveObjectRaycastBehaviour);
+            TickManager.RemoveTick(_interactionInputBehaviour);
+            TickManager.RemoveTick(_movementBehaviour);
         }
     }
 }

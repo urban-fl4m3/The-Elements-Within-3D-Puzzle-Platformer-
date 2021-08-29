@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sandbox_UF.unity
     guid: d1c3109bdb54ad54c8a2b2838528e640
+  - enabled: 1
+    path: Assets/Scenes/TestLelel.unity
+    guid: 8bac857213df6c8449e7be2222e09f8d
   m_configObjects: {}
